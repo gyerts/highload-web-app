@@ -4,10 +4,9 @@ import {getPostData, mapOfPosts} from '../../lib/posts'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import Head from "next/head";
 
-export default function Post({
-  postData
-}: {
+export default function Post({postData}: {
   postData: {
     title: string
     date: string
@@ -16,6 +15,9 @@ export default function Post({
 }) {
   return (
     <Layout>
+      <Head>
+        <title>{postData.title}</title>
+      </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
@@ -28,8 +30,11 @@ export default function Post({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const allKeys = Object.keys(mapOfPosts).map(key => `/posts/${mapOfPosts[key].id}`);
+  console.log('\n\nallKeys: ', allKeys);
+
   return {
-    paths: Object.keys(mapOfPosts).map(key => mapOfPosts[key].id),
+    paths: allKeys,
     fallback: false
   }
 };
