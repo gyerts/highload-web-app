@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import {Html} from "next/document";
 
 export default function Post({
   postData
@@ -16,6 +17,7 @@ export default function Post({
 }) {
   return (
     <Layout>
+      <Html lang='en' />
       <Head>
         <title>{postData.title}</title>
       </Head>
