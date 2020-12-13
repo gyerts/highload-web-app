@@ -1,10 +1,9 @@
+import React from 'react';
 import Layout from '../../components/layout'
 import {getPostData, mapOfPosts} from '../../lib/posts'
-import Head from 'next/head'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import {Html} from "next/document";
 
 export default function Post({
   postData
@@ -17,10 +16,6 @@ export default function Post({
 }) {
   return (
     <Layout>
-      <Html lang='en' />
-      <Head>
-        <title>{postData.title}</title>
-      </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
@@ -32,12 +27,9 @@ export default function Post({
   )
 }
 
-const paths = Object.keys(mapOfPosts).map(key => mapOfPosts[key].id);
-
-
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths,
+    paths: Object.keys(mapOfPosts).map(key => mapOfPosts[key].id),
     fallback: false
   }
 };

@@ -59,7 +59,9 @@ export let mapOfPosts = {};
 
 
 export function getSortedPostsData() {
-  return Object.keys(mapOfPosts).map(id => mapOfPosts[id]);
+  const allKeys = Object.keys(mapOfPosts).map(id => mapOfPosts[id]);
+  console.log('allKeys', allKeys);
+  return allKeys;
 }
 
 export async function getPostData(id: string) {
