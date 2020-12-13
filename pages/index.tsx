@@ -6,19 +6,19 @@ import Link from 'next/link'
 import Date from '../components/date'
 import { GetStaticProps } from 'next'
 
-export default function Home({
-  allPostsData
-}: {
+interface IProps {
   allPostsData: {
     date: string
     title: string
     id: string
   }[]
-}) {
+}
+
+export default function Home({allPostsData}: IProps) {
   return (
     <Layout home>
       <Head>
-        {/*<title>{siteTitle}</title>*/}
+        <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>[Your Self Introduction]</p>
@@ -48,10 +48,10 @@ export default function Home({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData()
+  const allPostsData = getSortedPostsData();
   return {
     props: {
       allPostsData
     }
   }
-}
+};
